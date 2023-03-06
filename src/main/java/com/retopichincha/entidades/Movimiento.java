@@ -1,5 +1,10 @@
+package com.retopichincha.entidades;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 @Entity
-@Table("Movimiento")
+@Table(name="Movimiento")
 public class Movimiento{
 
 }
