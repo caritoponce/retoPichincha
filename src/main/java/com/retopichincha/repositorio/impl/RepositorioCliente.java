@@ -15,27 +15,28 @@ public class RepositorioCliente implements ObjetoRepositorio<Cliente> {
 	private EntityManager em;
 
 	@Override
-	public void guardar(Cliente t) {
+	public void guardar(Cliente cliente) {
 		// TODO Auto-generated method stub
+		em.persist(cliente);
 		
 	}
 
 	@Override
-	public Cliente actualizar(int id) {
+	public Cliente actualizar(Cliente cliente) {
 		// TODO Auto-generated method stub
-		return null;
+		return em.merge(cliente);
 	}
 
 	@Override
-	public Cliente buscar(String name) {
+	public Cliente buscar(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return em.find(Cliente.class, id);
 	}
 
 	@Override
-	public Cliente eliminar(int id) {
+	public void eliminar(Cliente cliente) {
 		// TODO Auto-generated method stub
-		return null;
+		em.remove(cliente);
 	}
 
 }

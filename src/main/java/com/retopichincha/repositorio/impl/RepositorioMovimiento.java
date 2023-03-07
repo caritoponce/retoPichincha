@@ -14,27 +14,28 @@ public class RepositorioMovimiento  implements ObjetoRepositorio<Movimiento> {
 	private EntityManager em;
 	
 	@Override
-	public void guardar(Movimiento t) {
+	public void guardar(Movimiento movimiento) {
 		// TODO Auto-generated method stub
+		em.persist(movimiento);
 		
 	}
 
 	@Override
-	public Movimiento actualizar(int id) {
+	public Movimiento actualizar(Movimiento movimiento) {
 		// TODO Auto-generated method stub
-		return null;
+		return em.merge(movimiento);
 	}
 
 	@Override
-	public Movimiento buscar(String name) {
+	public Movimiento buscar(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return em.find(Movimiento.class,id);
 	}
 
 	@Override
-	public Movimiento eliminar(int id) {
+	public void eliminar(Movimiento movimiento) {
 		// TODO Auto-generated method stub
-		return null;
+		em.remove(movimiento);
 	}
 
 }

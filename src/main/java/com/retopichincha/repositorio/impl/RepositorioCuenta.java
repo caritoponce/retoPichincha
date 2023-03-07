@@ -14,27 +14,28 @@ public class RepositorioCuenta  implements ObjetoRepositorio<Cuenta> {
 	private EntityManager em;
 	
 	@Override
-	public void guardar(Cuenta t) {
+	public void guardar(Cuenta cuenta) {
 		// TODO Auto-generated method stub
+		em.persist(cuenta);
 		
 	}
 
 	@Override
-	public Cuenta actualizar(int id) {
+	public Cuenta actualizar(Cuenta cuenta) {
 		// TODO Auto-generated method stub
-		return null;
+		return em.merge(cuenta);
 	}
 
 	@Override
-	public Cuenta buscar(String name) {
+	public Cuenta buscar(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		return em.find(Cuenta.class, id);
 	}
 
 	@Override
-	public Cuenta eliminar(int id) {
+	public void eliminar(Cuenta cuenta) {
 		// TODO Auto-generated method stub
-		return null;
+		em.remove(cuenta);
 	}
 
 }
