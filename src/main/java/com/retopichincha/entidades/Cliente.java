@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -26,6 +27,7 @@ public class Cliente{
 	private String estado;
 	
 	@ManyToOne
+    @JoinColumn(name="idPersona", nullable=false)
 	private Persona persona;
 	
 	

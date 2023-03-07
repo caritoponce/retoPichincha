@@ -12,5 +12,6 @@ public class MovimientoDto{
 	private String tipoMovimiento;
 	private Double valor;
 	private Double saldo;
+	private Integer idCliente;
 
 }

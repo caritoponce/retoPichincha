@@ -29,7 +29,16 @@ public class ServicioImplMovimiento implements IServicioMovimiento{
 	public MovimientoDto actualizar(MovimientoDto movimientoDto) {
 		// TODO Auto-generated method stub
 		try {
-			return Utils.convertirToDtoMovimiento(repositorioMovimiento.actualizar(Utils.convertirToMovimiento(movimientoDto));
+			if(movimientoDto.getValor()>0) {
+				movimientoDto.setSaldo(movimientoDto.getSaldo()+movimientoDto.getValor());				
+			}else {
+				if(movimientoDto.getSaldo()==0) {
+					return null;
+				}else {
+					movimientoDto.setSaldo(movimientoDto.getSaldo()-movimientoDto.getValor());
+				}
+			}
+			return Utils.convertirToDtoMovimiento(repositorioMovimiento.actualizar(Utils.convertirToMovimiento(movimientoDto)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
