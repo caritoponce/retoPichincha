@@ -3,12 +3,12 @@ package com.retopichincha.controlador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.retopichincha.servicio.IServicioCliente;
+import com.retopichincha.servicio.IServicioMovimiento;
 
 @RestController
-public class ControladorCliente {
+public class ControladorMovimientos {
 	
 	@Autowired
-	private IServicioCliente servicioCliente;
+	private IServicioMovimiento servicioMovimiento;
 
 }
