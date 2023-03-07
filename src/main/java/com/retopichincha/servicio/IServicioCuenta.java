@@ -1,15 +1,15 @@
 package com.retopichincha.servicio;
 
-import com.retopichincha.entidades.Cuenta;
+import com.retopichincha.dto.CuentaDto;
 
 public interface IServicioCuenta {
 	
-	public void guardar(Cuenta cuenta);
+	public void guardar(CuentaDto cuentaDto);
 
-	public Cuenta actualizar(Cuenta cuenta);
+	public CuentaDto actualizar(CuentaDto cuentaDto);
 
-	public Cuenta buscar(Integer id);
+	public CuentaDto buscar(Integer id);
 
-	public void eliminar(Cuenta cuenta);
+	public void eliminar(CuentaDto cuentaDto);
 
 }

@@ -3,9 +3,10 @@ package com.retopichincha.servicio.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.retopichincha.entidades.Cliente;
+import com.retopichincha.dto.ClienteDto;
 import com.retopichincha.repositorio.impl.RepositorioCliente;
 import com.retopichincha.servicio.IServicioCliente;
+import com.retopichincha.utils.Utils;
 
 @Service
 public class ServicioImplCliente implements IServicioCliente {
@@ -14,10 +15,10 @@ public class ServicioImplCliente implements IServicioCliente {
 	private RepositorioCliente repositorioCliente;
 
 	@Override
-	public void guardar(Cliente cliente) {
+	public void guardar(ClienteDto clienteDto) {
 		// TODO Auto-generated method stub
 		try {
-			repositorioCliente.guardar(cliente);
+			repositorioCliente.guardar(Utils.convertirToCliente(clienteDto));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -25,21 +26,10 @@ public class ServicioImplCliente implements IServicioCliente {
 	}
 
 	@Override
-	public Cliente actualizar(Cliente cliente) {
+	public ClienteDto actualizar(ClienteDto clienteDto) {
 		// TODO Auto-generated method stub
 		try {
-			return repositorioCliente.actualizar(cliente);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@Override
-	public Cliente buscar(Integer id) {
-		// TODO Auto-generated method stub
-		try {
-			return repositorioCliente.buscar(id);
+			return Utils.convertirToDtoCliente(repositorioCliente.actualizar(Utils.convertirToCliente(clienteDto)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -47,10 +37,21 @@ public class ServicioImplCliente implements IServicioCliente {
 	}
 
 	@Override
-	public void eliminar(Cliente cliente) {
+	public ClienteDto buscar(Integer id) {
 		// TODO Auto-generated method stub
 		try {
-			repositorioCliente.eliminar(cliente);
+			return Utils.convertirToDtoCliente(repositorioCliente.buscar(id));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public void eliminar(ClienteDto clienteDto) {
+		// TODO Auto-generated method stub
+		try {
+			repositorioCliente.eliminar(Utils.convertirToCliente(clienteDto));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

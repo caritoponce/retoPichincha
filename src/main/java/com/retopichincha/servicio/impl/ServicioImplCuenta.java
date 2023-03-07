@@ -2,9 +2,11 @@ package com.retopichincha.servicio.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.retopichincha.entidades.Cuenta;
+
+import com.retopichincha.dto.CuentaDto;
 import com.retopichincha.repositorio.impl.RepositorioCuenta;
 import com.retopichincha.servicio.IServicioCuenta;
+import com.retopichincha.utils.Utils;
 
 @Service
 public class ServicioImplCuenta implements IServicioCuenta{
@@ -13,10 +15,10 @@ public class ServicioImplCuenta implements IServicioCuenta{
 	private RepositorioCuenta repositorioCuenta;
 
 	@Override
-	public void guardar(Cuenta cuenta) {
+	public void guardar(CuentaDto cuentaDto) {
 		// TODO Auto-generated method stub
 		try {
-			repositorioCuenta.guardar(cuenta);
+			repositorioCuenta.guardar(Utils.convertirToCuenta(cuentaDto));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -24,21 +26,10 @@ public class ServicioImplCuenta implements IServicioCuenta{
 	}
 
 	@Override
-	public Cuenta actualizar(Cuenta cuenta) {
+	public CuentaDto actualizar(CuentaDto cuentaDto) {
 		// TODO Auto-generated method stub
 		try {
-			return repositorioCuenta.actualizar(cuenta);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@Override
-	public Cuenta buscar(Integer id) {
-		// TODO Auto-generated method stub
-		try {
-			return repositorioCuenta.buscar(id);
+			return Utils.convertirToDtoCuenta(repositorioCuenta.actualizar(Utils.convertirToCuenta(cuentaDto)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,10 +37,21 @@ public class ServicioImplCuenta implements IServicioCuenta{
 	}
 
 	@Override
-	public void eliminar(Cuenta cuenta) {
+	public CuentaDto buscar(Integer id) {
 		// TODO Auto-generated method stub
 		try {
-			repositorioCuenta.eliminar(cuenta);
+			return Utils.convertirToDtoCuenta(repositorioCuenta.buscar(id));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public void eliminar(CuentaDto cuentaDto) {
+		// TODO Auto-generated method stub
+		try {
+			repositorioCuenta.eliminar(Utils.convertirToCuenta(cuentaDto));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,16 +1,16 @@
 package com.retopichincha.servicio;
 
-import com.retopichincha.entidades.Movimiento;
+import com.retopichincha.dto.MovimientoDto;
 
 public interface IServicioMovimiento {
 	
-	public void guardar(Movimiento movimiento);
+	public void guardar(MovimientoDto movimientoDto);
 
-	public Movimiento actualizar(Movimiento movimiento);
+	public MovimientoDto actualizar(MovimientoDto movimientoDto);
 
-	public Movimiento buscar(Integer id);
+	public MovimientoDto buscar(Integer id);
 
-	public void eliminar(Movimiento movimiento);
+	public void eliminar(MovimientoDto movimientoDto);
 
 
 }

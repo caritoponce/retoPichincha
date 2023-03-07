@@ -1,10 +1,12 @@
 package com.retopichincha.servicio.impl;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.retopichincha.entidades.Movimiento;
+import com.retopichincha.dto.MovimientoDto;
 import com.retopichincha.repositorio.impl.RepositorioMovimiento;
 import com.retopichincha.servicio.IServicioMovimiento;
+import com.retopichincha.utils.Utils;
 
 @Service
 public class ServicioImplMovimiento implements IServicioMovimiento{
@@ -13,10 +15,10 @@ public class ServicioImplMovimiento implements IServicioMovimiento{
 	private RepositorioMovimiento repositorioMovimiento;
 	
 	@Override
-	public void guardar(Movimiento movimiento) {
+	public void guardar(MovimientoDto movimientoDto) {
 		// TODO Auto-generated method stub
 		try {
-			repositorioMovimiento.guardar(movimiento);
+			repositorioMovimiento.guardar(Utils.convertirToMovimiento(movimientoDto));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -24,21 +26,10 @@ public class ServicioImplMovimiento implements IServicioMovimiento{
 	}
 
 	@Override
-	public Movimiento actualizar(Movimiento movimiento) {
+	public MovimientoDto actualizar(MovimientoDto movimientoDto) {
 		// TODO Auto-generated method stub
 		try {
-			return repositorioMovimiento.actualizar(movimiento);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@Override
-	public Movimiento buscar(Integer id) {
-		// TODO Auto-generated method stub
-		try {
-			return repositorioMovimiento.buscar(id);
+			return Utils.convertirToDtoMovimiento(repositorioMovimiento.actualizar(Utils.convertirToMovimiento(movimientoDto));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,10 +37,21 @@ public class ServicioImplMovimiento implements IServicioMovimiento{
 	}
 
 	@Override
-	public void eliminar(Movimiento movimiento) {
+	public MovimientoDto buscar(Integer id) {
 		// TODO Auto-generated method stub
 		try {
-			repositorioMovimiento.eliminar(movimiento);
+			return Utils.convertirToDtoMovimiento(repositorioMovimiento.buscar(id));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public void eliminar(MovimientoDto movimientoDto) {
+		// TODO Auto-generated method stub
+		try {
+			repositorioMovimiento.eliminar(Utils.convertirToMovimiento(movimientoDto));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

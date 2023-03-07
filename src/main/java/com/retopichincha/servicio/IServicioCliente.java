@@ -1,14 +1,15 @@
 package com.retopichincha.servicio;
 
-import com.retopichincha.entidades.Cliente;
+import com.retopichincha.dto.ClienteDto;
+
 
 public interface IServicioCliente {
 
-	public void guardar(Cliente cliente);
+	public void guardar(ClienteDto clienteDto);
 
-	public Cliente actualizar(Cliente cliente);
+	public ClienteDto actualizar(ClienteDto clienteDto);
 
-	public Cliente buscar(Integer id);
+	public ClienteDto buscar(Integer id);
 
-	public void eliminar(Cliente cliente);
+	public void eliminar(ClienteDto clienteDto);
 }
