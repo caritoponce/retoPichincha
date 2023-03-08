@@ -1,5 +1,7 @@
 package com.retopichincha.controlador;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +24,17 @@ public class ControladorCuenta {
 	@Autowired
 	private IServicioCuenta servicioCuenta;
 	
+	private static final Logger logger = LoggerFactory.getLogger(ControladorCuenta.class);
+	
 	@GetMapping("/{idCuenta}")
 	private ResponseEntity<CuentaDto> getCuenta(@PathVariable("idCuenta") Integer idCuenta) {		
 		
 		try {
 			CuentaDto cuentaDto= servicioCuenta.buscar(idCuenta);
+			logger.debug("Cuenta a consultar {}", cuentaDto.toString());
 			return ResponseEntity.ok(cuentaDto);	
 		}catch(Exception e) {
+			logger.error("Error al consultar cuenta", e.toString());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 			
@@ -40,8 +46,10 @@ public class ControladorCuenta {
 		
 		try {			
 			servicioCuenta.guardar(cuentaDto);
+			logger.debug("Cuenta a crear {}", cuentaDto.toString());
 			return ResponseEntity.ok(cuentaDto);	
 		}catch(Exception e) {
+			logger.error("Error al crear cuenta", e.toString());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 	}
@@ -51,8 +59,10 @@ public class ControladorCuenta {
 		
 		try {			
 			servicioCuenta.eliminar(cuentaDto);
+			logger.debug("Cuenta a eliminar {}", cuentaDto.toString());
 			return ResponseEntity.ok(cuentaDto);	
 		}catch(Exception e) {
+			logger.error("Error al eliminar cuenta", e.toString());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 	}
@@ -62,8 +72,10 @@ public class ControladorCuenta {
 		
 		try {			
 			servicioCuenta.actualizar(cuentaDto);
+			logger.debug("Cuenta actualizar {}", cuentaDto.toString());
 			return ResponseEntity.ok(cuentaDto);	
 		}catch(Exception e) {
+			logger.error("Error al actualizar cuenta", e.toString());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 	}

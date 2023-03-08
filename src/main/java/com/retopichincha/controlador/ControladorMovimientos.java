@@ -1,5 +1,7 @@
 package com.retopichincha.controlador;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +24,17 @@ public class ControladorMovimientos {
 	@Autowired
 	private IServicioMovimiento servicioMovimiento;
 	
+	private static final Logger logger = LoggerFactory.getLogger(ControladorMovimientos.class);
+	
 	@GetMapping("/{idMovimiento}")
 	private ResponseEntity<MovimientoDto> getMovimiento(@PathVariable("idMovimiento") Integer idMovimiento) {
 		
 		try {	
 			MovimientoDto movimientoDto= servicioMovimiento.buscar(idMovimiento);
+			logger.debug("Movimiento a consultar {}", movimientoDto.toString());
 			return ResponseEntity.ok(movimientoDto);
 		}catch(Exception e) {
+			logger.error("Error al consultar movimiento", e.toString());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 	}
@@ -38,8 +44,10 @@ public class ControladorMovimientos {
 		
 		try {			
 			servicioMovimiento.guardar(movimientoDto);
+			logger.debug("Movimiento a crear {}", movimientoDto.toString());
 			return ResponseEntity.ok(movimientoDto);	
 		}catch(Exception e) {
+			logger.error("Error al crear movimiento", e.toString());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 	}
@@ -49,8 +57,10 @@ public class ControladorMovimientos {
 		
 		try {			
 			servicioMovimiento.eliminar(movimientoDto);
+			logger.debug("Movimiento a eliminar {}", movimientoDto.toString());
 			return ResponseEntity.ok(movimientoDto);	
 		}catch(Exception e) {
+			logger.error("Error al eliminar movimiento", e.toString());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 	}
@@ -60,8 +70,10 @@ public class ControladorMovimientos {
 		
 		try {			
 			servicioMovimiento.actualizar(movimientoDto);
+			logger.debug("Movimiento actualizar {}", movimientoDto.toString());
 			return ResponseEntity.ok(movimientoDto);	
 		}catch(Exception e) {
+			logger.error("Error al actualizar movimiento", e.toString());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 	}
