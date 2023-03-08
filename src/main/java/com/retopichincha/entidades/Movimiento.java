@@ -35,8 +35,8 @@ public class Movimiento{
 	private Double saldo;
 	
 	@ManyToOne
-    @JoinColumn(name="idCliente", nullable=false)
-	private Cliente cliente;
+    @JoinColumn(name="idCuenta", nullable=false)
+	private Cuenta cuenta;
 	
 
 }

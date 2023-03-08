@@ -14,4 +14,6 @@ public class CuentaDto {
   private Double saldoInicial;
   
   private String estado;
+  
+  private ClienteDto clienteDto;
 }
